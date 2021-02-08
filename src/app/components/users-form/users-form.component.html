@@ -1,0 +1,105 @@
+
+
+
+<div class="row">
+  <div class="col s6">
+    <h2>Person add</h2>
+    <form #userForm="ngForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group ">
+        <label for="username">Username</label>
+        <input id="username" name="username" class="form-control"
+              required minlength="4" [(ngModel)]="user.username" #username="ngModel">
+        
+        <div class="red-text text-darken-2" *ngIf="username.errors?.required">
+          username is required.
+        </div>
+        <div class="red-text text-darken-2" *ngIf="username.errors?.minlength">
+          username must be at least 4 characters long.
+        </div>      
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" name="email" class="form-control" required email [(ngModel)]="user.email" #email="ngModel" >
+        <div class="red-text text-darken-2" *ngIf="email.errors?.required"> 
+          email is required.
+        </div>
+        <div class="red-text text-darken-2" *ngIf="email.errors?.email">
+          email is invalid
+        </div>   
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" name="password" class="form-control"
+              required minlength="6" [(ngModel)]="user.password" #password="ngModel" type="password">
+        
+        <div class="red-text text-darken-2" *ngIf="password.errors?.required">
+          password is required.
+        </div>
+        <div class="red-text text-darken-2" *ngIf="password.errors?.minlength">
+          password must be at least 6 characters long.
+        </div>      
+      </div>
+
+      <div class="form-group">
+        <label for="tel">Tel</label>
+        <input id="tel" name="tel" class="form-control"
+              required minlength="10" maxlength="10" [(ngModel)]="user.tel" #tel="ngModel">
+        
+          <div class="red-text text-darken-2" *ngIf="tel.errors?.required">
+            tel is required.
+          </div>
+          <div class="red-text text-darken-2" *ngIf="tel.errors?.minlength">
+            tel must be at least 10 characters long.
+          </div>  
+      </div>
+
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input id="age" name="age" class="form-control" required maxlength="3" min='0' max='130'  [(ngModel)]="user.age" #age="ngModel">
+          <div class="red-text text-darken-2" *ngIf="age.errors?.required" >
+            age is required.
+          </div> 
+          <div class="red-text text-darken-2" *ngIf="age.errors?.min">
+            minimum age is 0.
+          </div> 
+          <div class="red-text text-darken-2" *ngIf="age.errors?.max">
+            maximum age is 130.
+          </div> 
+          <div class="red-text text-darken-2" *ngIf="age.errors?.maxlength">
+            age must be at least 3 characters long.
+          </div>  
+      </div>
+
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <select id="gender" name="gender" class="form-control" required  [(ngModel)]="user.gender" #gender="ngModel">
+          <option *ngFor="let gender of genders" [value]="gender">{{gender}}</option>
+        </select>
+        <div class="red-text text-darken-2" *ngIf="gender.errors?.required">
+            gender is required.
+        </div>  
+      </div>
+
+      <div class="form-group">
+        <label for="hobby">Hobby</label>
+        <input id="hobby" name="hobby" class="form-control" required  [(ngModel)]="user.hobby" #hobby="ngModel">
+          <div class="red-text text-darken-2" *ngIf="hobby.errors?.required">
+            hobby is required.
+          </div>  
+      </div>
+
+
+
+      
+
+      <div class="form-group">
+        <button type="submit" class="waves-effect waves-light btn" [disabled]="!userForm.form.valid">Save</button>
+      </div>
+
+    </form>
+
+  </div>
+</div>

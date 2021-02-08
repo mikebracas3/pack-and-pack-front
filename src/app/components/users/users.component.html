@@ -1,0 +1,74 @@
+
+
+<div class="row">
+    <form class="col s12">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="queryUsername" type="text" class="validate" [(ngModel)]="queryUsername" [ngModelOptions]="{standalone: true}" (keyup.enter)="search()">
+          <label for="queryUsername">Search username</label>
+        </div>
+        <div class="input-field col s6">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="queryhobby" type="text" class="validate" [(ngModel)]="queryhobby" [ngModelOptions]="{standalone: true}" (keyup.enter)="search()">
+          <label for="queryhobby">Search hobby</label>
+        </div>
+    </form>
+</div>
+
+<div class="row">
+  <div class="col s12">
+    <mat-table [dataSource]="users">
+
+        <ng-container matColumnDef="_id">
+            <mat-header-cell *matHeaderCellDef> _id </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row._id}} </mat-cell>
+          </ng-container>
+
+        <ng-container matColumnDef="username">
+          <mat-header-cell *matHeaderCellDef> Username </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.username}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="tel">
+            <mat-header-cell *matHeaderCellDef> Tel </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.tel}} </mat-cell>
+          </ng-container>  
+      
+        <ng-container matColumnDef="age">
+          <mat-header-cell *matHeaderCellDef> Age </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.age}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="gender">
+            <mat-header-cell *matHeaderCellDef> Gender </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.gender}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="hobby">
+            <mat-header-cell *matHeaderCellDef> Hobby </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.hobby}} </mat-cell>
+          </ng-container> 
+          
+          <ng-container matColumnDef="createdAt">
+            <mat-header-cell *matHeaderCellDef> Created At </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.createdAt}} </mat-cell>
+          </ng-container>
+          
+          <ng-container matColumnDef="delete">
+            <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              <button class="red lighten-1 btn-small" (click)="delete(row)">
+                <i class="material-icons left">delete_forever</i>Delete</button>
+            </mat-cell>
+          </ng-container>
+
+        <mat-header-row *matHeaderRowDef="['username', 'tel', 'age', 'gender', 'hobby', 'createdAt','delete']"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: ['username',  'tel', 'age', 'gender', 'hobby', 'createdAt','delete']"></mat-row>
+    </mat-table>
+  </div>
+</div>
